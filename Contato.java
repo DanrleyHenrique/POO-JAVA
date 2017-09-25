@@ -1,4 +1,4 @@
-package helloworld;
+package ifrnpoo;
 
 public class Contato {
 	private String nome;
