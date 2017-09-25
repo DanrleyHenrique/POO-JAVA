@@ -1,23 +1,39 @@
 package helloworld;
-import java.util.Scanner;
 
-public class AgendaUI {
-	private Agenda agenda;
-	private Scanner sc;
+public class Agenda {
+	private Contato contatos[];
+	private int quantidade;
 	
-	public void UI()
+	public Agenda()
 	{
-		agenda = new Agenda();
+		contatos = new Contato[10];
+		quantidade = 0;
 	}
 	
-	public void Run()
+	public void InserirContato(Contato contato)
 	{
-		sc = new Scanner(System.in);
-		int opcao = 0;
-		do 
+		contatos[quantidade++] = contato;
+	}
+	
+	public Contato Buscar(String nome)
+	{
+		for(int i = 0 ; i < quantidade ; i++)
 		{
-			printMenu();
-			opcao = sc.nextInt();
+			if(contatos[i].getNome().equals(nome))
+			{
+				return contatos[i];
+			}
 		}
+		return null;
+	}
+	
+	public void Remover()
+	{
+		
+	}
+	
+	public int Quantidade()
+	{
+		return quantidade;
 	}
 }
