@@ -1,4 +1,4 @@
-package helloworld;
+package ifrnpoo;
 
 public class Agenda {
 	private Contato contatos[];
