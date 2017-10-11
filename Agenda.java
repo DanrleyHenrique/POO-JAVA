@@ -27,16 +27,28 @@ public class Agenda {
 		return null;
 	}
 	
-	public int BuscarParaRemocao(String nome)
+	public void BuscarParaRemocao(String nome)
 	{
+		if(quantidade == 0)
+		{
+			System.out.println("Agenda vazia");
+		}
+		else 
+		{
+		
 		for(int i = 0 ; i < quantidade ; i++)
 		{
 			if(contatos[i].getNome().equals(nome))
 			{
-				return i;
+				Remover(i);
+			}
+			else
+			{
+				System.out.println("Registro não encontrado");
 			}
 		}
-		return -1;
+		}
+		
 	}
 	
 	public void RemoverUltimo()
@@ -51,17 +63,13 @@ public class Agenda {
 		for(int i = quantidade - indice; i < quantidade; i++)
 		{
 			contatos[indice].setNome(contatos[indice+1].getNome());
-			contatos[indice].setTelefone(contatos[indice+1].getNome());
+			contatos[indice].setTelefone(contatos[indice+1].getTelefone());
 			indice++;
 		}
 		RemoverUltimo();
 	}
 	
-	public int Quantidade()
-	{
-		return quantidade;
-	}
-	
+		
 	public String getContato(int i)
 	{
 		String c;
