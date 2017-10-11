@@ -55,7 +55,7 @@ public class AgendaUI {
 	
 	private void listarContato() 
 	{
-		for(int i = 0; i < agenda.Quantidade(); i++)
+		for(int i = 0; i < agenda.getQuantidade(); i++)
 		{
 			System.out.println(agenda.getContato(i));
 		}
@@ -77,11 +77,8 @@ public class AgendaUI {
 	{
 		System.out.println("Digite o nome: ");
 		String nome = sc.next();
-		int i = agenda.BuscarParaRemocao(nome);
-		if(i != -1) 
-			agenda.Remover(i);
-		else
-			System.out.println("Contato não encontrado");
+		agenda.BuscarParaRemocao(nome);
+		
 		
 	}
 	
@@ -101,7 +98,7 @@ public class AgendaUI {
 	private void printMenu() 
 	{
 		System.out.println("\n\n ---- Menu Agenda de contatos v 1.0 ----");
-		System.out.println("\n Memória: " + agenda.Quantidade() + " contatos");
+		System.out.println("\n Memória: " + agenda.getQuantidade() + " contatos");
 		System.out.println("  0 - Sair");
 		System.out.println("  1 - Inserir contato");
 		System.out.println("  2 - Buscar contato");
