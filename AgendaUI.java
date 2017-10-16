@@ -6,6 +6,7 @@ public class AgendaUI {
 	private Agenda agenda;
 	private Scanner sc;
 	
+	
 	public void UI()
 	{
 		agenda = new Agenda();
@@ -55,10 +56,17 @@ public class AgendaUI {
 	
 	private void listarContato() 
 	{
-		for(int i = 0; i < agenda.getQuantidade(); i++)
+		if(agenda.getQuantidade() == 0) 
 		{
-			System.out.println(agenda.getContato(i));
+			System.out.println("Agenda vazia");
 		}
+		else
+			{
+				for(int i = 0; i < agenda.getQuantidade(); i++)
+				{
+					System.out.println(agenda.getContato(i));
+				}
+			}
 	}
 	
 	private Contato buscarContato()
@@ -78,8 +86,6 @@ public class AgendaUI {
 		System.out.println("Digite o nome: ");
 		String nome = sc.next();
 		agenda.BuscarParaRemocao(nome);
-		
-		
 	}
 	
 	private void removerUltimoContato() 
