@@ -1,18 +1,51 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ifrnpoo;
 
 public class Agenda {
 	private Contato contatos[];
+        private Contato contatosAux[];
 	private int quantidade;
-	
+	private int TamanhoMaximoDaAgenda;
+        private boolean controle;
+        
 	public Agenda()
 	{
-		contatos = new Contato[10];
+		contatos = new Contato[2];
+                TamanhoMaximoDaAgenda = 2;
 		quantidade = 0;
+                controle = true;
 	}
 	
 	public void InserirContato(Contato contato)
 	{
 		contatos[quantidade++] = contato;
+                if(quantidade == TamanhoMaximoDaAgenda)
+                {
+                    System.out.println("entrou no if do capeta ");
+                    TamanhoMaximoDaAgenda += 2;
+                    
+                    if(controle == true){
+                        contatosAux = new Contato[TamanhoMaximoDaAgenda];
+                        for(int i = 0; i < quantidade; i++) 
+			{
+                            contatosAux[i].setNome(contatos[i].getNome());
+                            contatosAux[i].setTelefone(contatos[i].getTelefone());	
+			}
+                        controle = !controle;
+                    }else{
+                        contatos = new Contato[TamanhoMaximoDaAgenda];
+                        for(int i = 0; i < quantidade; i++) 
+			{
+                            contatos[i].setNome(contatosAux[i].getNome());
+                            contatos[i].setTelefone(contatosAux[i].getTelefone());	
+			}
+                        controle = !controle;
+                    }
+                }
 	}
 	
 	public Contato Buscar(String nome)
@@ -61,9 +94,8 @@ public class Agenda {
 		{
 			for(int i = 0; i < quantidade-1; i++) 
 			{
-				contatos[indice].setNome(contatos[indice+1].getNome());
-				contatos[indice].setTelefone(contatos[indice+1].getTelefone());
-				indice++;
+				contatos[i].setNome(contatos[i+1].getNome());
+				contatos[i].setTelefone(contatos[i+1].getTelefone());	
 			}
 		}
 		else
@@ -81,9 +113,18 @@ public class Agenda {
 		
 	public String getContato(int i)
 	{
+            if(controle == true)
+            {
 		String c;
 		c = contatos[i].getNome() + " " + contatos[i].getTelefone();
 		return c;
+            }
+            else
+            {
+                String c;
+		c = contatosAux[i].getNome() + " " + contatosAux[i].getTelefone();
+		return c;
+            }
 	}
 	
 	public int getQuantidade()
