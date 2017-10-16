@@ -36,17 +36,14 @@ public class Agenda {
 		else 
 		{
 		
-		for(int i = 0 ; i < quantidade ; i++)
-		{
-			if(contatos[i].getNome().equals(nome))
+			for(int i = 0 ; i < quantidade ; i++)
 			{
-				Remover(i);
+				if(contatos[i].getNome().equals(nome))
+				{
+					Remover(i);
+				}
+				
 			}
-			else
-			{
-				System.out.println("Registro não encontrado");
-			}
-		}
 		}
 		
 	}
@@ -60,11 +57,23 @@ public class Agenda {
 	
 	public void Remover(int indice)
 	{
-		for(int i = quantidade - indice; i < quantidade; i++)
+		if(indice == 0)
 		{
-			contatos[indice].setNome(contatos[indice+1].getNome());
-			contatos[indice].setTelefone(contatos[indice+1].getTelefone());
-			indice++;
+			for(int i = 0; i < quantidade-1; i++) 
+			{
+				contatos[indice].setNome(contatos[indice+1].getNome());
+				contatos[indice].setTelefone(contatos[indice+1].getTelefone());
+				indice++;
+			}
+		}
+		else
+		{
+			for(int i = quantidade - indice; i < quantidade; i++) 
+			{
+				contatos[indice].setNome(contatos[indice+1].getNome());
+				contatos[indice].setTelefone(contatos[indice+1].getTelefone());
+				indice++;
+			}
 		}
 		RemoverUltimo();
 	}
