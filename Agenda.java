@@ -2,7 +2,7 @@ package ifrnpoo;
 
 public class Agenda {
 	private Contato contatos[];
-   	private Contato contatosAux[];
+        private Contato contatosAux[];
 	private int quantidade;
 	private int TamanhoMaximoDaAgenda;
  
@@ -10,10 +10,8 @@ public class Agenda {
 	public Agenda()
 	{
 		contatos = new Contato[2];
-		
-        TamanhoMaximoDaAgenda = 2;
+        	TamanhoMaximoDaAgenda = 2;
 		quantidade = 0;
-        controle = true;
 	}
 	
 	public void InserirContato(Contato contato)
