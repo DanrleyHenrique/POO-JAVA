@@ -2,10 +2,9 @@ package ifrnpoo;
 
 public class Agenda {
 	private Contato contatos[];
-    private Contato contatosAux[];
+   	private Contato contatosAux[];
 	private int quantidade;
 	private int TamanhoMaximoDaAgenda;
-    private boolean controle;
  
         
 	public Agenda()
@@ -20,6 +19,20 @@ public class Agenda {
 	public void InserirContato(Contato contato)
 	{
 		contatos[quantidade++] = contato;
+		if(quantidade == TamanhoMaximoDaAgenda)
+		{
+			contatosAux = new Contato[TamanhoMaximoDaAgenda+2];
+			for(int i = 0 ; i < TamanhoMaximoDaAgenda ; i++)
+			{
+				contatosAux[i] = contatos[i];
+			}
+			TamanhoMaximoDaAgenda += 2;
+			contatos = new Contato[TamanhoMaximoDaAgenda];
+			for(int i = 0 ; i < TamanhoMaximoDaAgenda ; i++)
+			{
+				contatos[i] = contatosAux[i];
+			}
+		}
 	}
 	
 	public Contato Buscar(String nome)
@@ -87,44 +100,13 @@ public class Agenda {
 		
 	public String getContato(int i)
 	{
-            if(controle == true)
-            {
-            	String c;
-            	c = contatos[i].getNome() + " " + contatos[i].getTelefone();
-            	return c;
-            }
-            else
-            {
-                String c;
-                c = contatosAux[i].getNome() + " " + contatosAux[i].getTelefone();
-                return c;
-            }
+		String c;
+        c = contatos[i].getNome() + " " + contatos[i].getTelefone();
+        return c;    
 	}
 	
 	public int getQuantidade()
 	{
 		return quantidade;
-	}
-	
-	private void CriarVetorAuxiliar()
-	{
-		TamanhoMaximoDaAgenda += 2;
-		contatosAux = new Contato[TamanhoMaximoDaAgenda];
-		for(int i = 0 ; i < quantidade ; i++)
-		{
-			contatosAux[i] = contatos[i];
-		}
-		
-	}
-	
-	private void RecriarVetorPrincipal()
-	{
-		TamanhoMaximoDaAgenda += 2;
-		contatos = new Contato[TamanhoMaximoDaAgenda];
-		for(int i = 0 ; i < quantidade ; i++)
-		{
-			contatos[i] = contatosAux[i];
-		}
-		
 	}
 }
