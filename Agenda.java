@@ -1,51 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ifrnpoo;
 
 public class Agenda {
 	private Contato contatos[];
-        private Contato contatosAux[];
+    private Contato contatosAux[];
 	private int quantidade;
 	private int TamanhoMaximoDaAgenda;
-        private boolean controle;
+    private boolean controle;
+ 
         
 	public Agenda()
 	{
 		contatos = new Contato[2];
-                TamanhoMaximoDaAgenda = 2;
+		
+        TamanhoMaximoDaAgenda = 2;
 		quantidade = 0;
-                controle = true;
+        controle = true;
 	}
 	
 	public void InserirContato(Contato contato)
 	{
 		contatos[quantidade++] = contato;
-                if(quantidade == TamanhoMaximoDaAgenda)
-                {
-                    System.out.println("entrou no if do capeta ");
-                    TamanhoMaximoDaAgenda += 2;
-                    
-                    if(controle == true){
-                        contatosAux = new Contato[TamanhoMaximoDaAgenda];
-                        for(int i = 0; i < quantidade; i++) 
-			{
-                            contatosAux[i].setNome(contatos[i].getNome());
-                            contatosAux[i].setTelefone(contatos[i].getTelefone());	
-			}
-                        controle = !controle;
-                    }else{
-                        contatos = new Contato[TamanhoMaximoDaAgenda];
-                        for(int i = 0; i < quantidade; i++) 
-			{
-                            contatos[i].setNome(contatosAux[i].getNome());
-                            contatos[i].setTelefone(contatosAux[i].getTelefone());	
-			}
-                        controle = !controle;
-                    }
-                }
 	}
 	
 	public Contato Buscar(String nome)
@@ -115,20 +89,42 @@ public class Agenda {
 	{
             if(controle == true)
             {
-		String c;
-		c = contatos[i].getNome() + " " + contatos[i].getTelefone();
-		return c;
+            	String c;
+            	c = contatos[i].getNome() + " " + contatos[i].getTelefone();
+            	return c;
             }
             else
             {
                 String c;
-		c = contatosAux[i].getNome() + " " + contatosAux[i].getTelefone();
-		return c;
+                c = contatosAux[i].getNome() + " " + contatosAux[i].getTelefone();
+                return c;
             }
 	}
 	
 	public int getQuantidade()
 	{
 		return quantidade;
+	}
+	
+	private void CriarVetorAuxiliar()
+	{
+		TamanhoMaximoDaAgenda += 2;
+		contatosAux = new Contato[TamanhoMaximoDaAgenda];
+		for(int i = 0 ; i < quantidade ; i++)
+		{
+			contatosAux[i] = contatos[i];
+		}
+		
+	}
+	
+	private void RecriarVetorPrincipal()
+	{
+		TamanhoMaximoDaAgenda += 2;
+		contatos = new Contato[TamanhoMaximoDaAgenda];
+		for(int i = 0 ; i < quantidade ; i++)
+		{
+			contatos[i] = contatosAux[i];
+		}
+		
 	}
 }
